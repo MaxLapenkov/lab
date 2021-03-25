@@ -59,9 +59,16 @@ function App() {
       })
     }
 
+
+    //Отправка данных о человеке
     const handleSendInputData = () => {
       if(inputValue.name) {
-        postEmp(inputValue).then((response) => console.log(response))
+        postEmp(inputValue).then((response) => {
+          if(response.ok) {
+            getList().then(response => response.json())
+              .then(json => setPeopleList(json))
+          }
+        })
       }
     }
 
