@@ -4,6 +4,9 @@ export const getList = () => fetch(`${appBase}emp`)
 export const getFiles = () => fetch(`${appBase}file`)
 export const postEmp = (data) => fetch(`${appBase}add_emp`, {
     method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
     body: JSON.stringify(data)
 })
 export const postFile = (data) => fetch(`${appBase}add_file`, {

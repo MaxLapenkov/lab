@@ -8,8 +8,8 @@ function App() {
   const [fileList, setFileList] = useState([]);
   const [inputValue, setInputValue] = useState({
     name: '',
-    address: '',
     email: '',
+    address: '',
     phone: ''
   })
   const [fileValue, setFileValue] = useState();
@@ -18,8 +18,8 @@ function App() {
     useEffect(() => {
         getList().then(response => response.json())
             .then(json => setPeopleList(json))
-        getFiles().then(response => response.json())
-            .then(json => setFileList(json))
+        // getFiles().then(response => response.json())
+        //     .then(json => setFileList(json))
     }, [])
 
 
@@ -86,6 +86,7 @@ function App() {
     const listItems = peopleList.map((item) => {
       return (
         <div key={item.id} className='item'>
+          <p>ID: {item.id}</p>
           <p>Имя: {item.name}</p>
           <p>Почта: {item.email}</p>
           <p>Адрес: {item.address}</p>
@@ -101,10 +102,10 @@ function App() {
             <h2>Люди</h2>
                {listItems}
           </div>
-          <div className="images">
+          {/* <div className="images">
             <h2>Файлы</h2>
               rfhn
-          </div>
+          </div> */}
         </div>       
           <div className="form-container">
           <form className="form">
@@ -128,13 +129,13 @@ function App() {
               Отправить текст
             </button>
           </form>
-          <form className="form">
+          {/* <form className="form">
             <h6>Отправьте файл</h6>
             <input className='input' type='file' onChange={handleChangeFileValue}/>
             <button className="button" type="button" onClick={handleSendFile}>
               Отправить файл
             </button>
-          </form>
+          </form> */}
           </div>
       </div>
       
