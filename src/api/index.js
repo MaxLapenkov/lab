@@ -9,6 +9,9 @@ export const postEmp = (data) => fetch(`${appBase}add_emp`, {
     },
     body: JSON.stringify(data)
 })
+export const deleteEmp = (id) => fetch(`${appBase}delete_emp/${id}`, {
+    method: 'DELETE'
+})
 export const postFile = (data) => fetch(`${appBase}add_file`, {
     method: 'POST',
     body: data

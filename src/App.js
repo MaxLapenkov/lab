@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getList, getFiles, postEmp, postFile } from './api';
+import { getList, getFiles, postEmp, deleteEmp, postFile } from './api';
 
 import './App.css';
 
@@ -72,6 +72,15 @@ function App() {
       }
     }
 
+    const handleDeletePerson = (id) => {
+      deleteEmp(id).then((response) => {
+        if(response.ok) {
+          getList().then(response => response.json())
+            .then(json => setPeopleList(json))
+        }
+      })
+    }
+
     const handleSendFile = () => {
       if (fileValue) {
         const formData = new FormData();
@@ -86,11 +95,16 @@ function App() {
     const listItems = peopleList.map((item) => {
       return (
         <div key={item.id} className='item'>
-          <p>ID: {item.id}</p>
-          <p>Имя: {item.name}</p>
-          <p>Почта: {item.email}</p>
-          <p>Адрес: {item.address}</p>
-          <p>Телефон: {item.phone}</p>
+          <div className="item-content">
+            <p>ID: {item.id}</p>
+            <p>Имя: {item.name}</p>
+            <p>Почта: {item.email}</p>
+            <p>Адрес: {item.address}</p>
+            <p>Телефон: {item.phone}</p>
+          </div>
+          <div className="item-controls">
+            <button type="button" onClick={() => handleDeletePerson(item.id)}>Удалить</button>
+          </div>
         </div>
       )      
   })
