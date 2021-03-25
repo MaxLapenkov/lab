@@ -1,0 +1,1 @@
+export const getList = () => fetch('https://jsonplaceholder.typicode.com/todos')
